@@ -127,6 +127,7 @@ class FuzzyLogic():
                 self.final_decision_on_body = i
 
         print(f'Final Decision on Body: {self.final_decision_on_body}')
+        print('____________________________________________________________________')
         return self.final_decision_on_body
 
 if __name__ == "__main__":
