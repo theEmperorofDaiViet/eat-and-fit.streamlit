@@ -51,16 +51,16 @@ class NutritionDetail():
         self.protein = protein
 
     def get_carbs_percentage(self):
-        c = self.carbs * 4 / (self.carb * 4 + self.fat * 9 + self.protein * 4)
-        return f"{c:.2%}"
+        c = self.carbs * 4 / (self.carbs * 4 + self.fat * 9 + self.protein * 4)
+        return c
 
     def get_fat_percentage(self):
         f = self.fat * 9 / (self.carbs * 4 + self.fat * 9 + self.protein * 4)
-        return f"{f:.2%}"
+        return f
 
     def get_protein_percentage(self):
         p = self.protein * 4 / (self.carbs * 4 + self.fat * 9 + self.protein * 4)
-        return f"{p:.2%}"
+        return p
 
 class DietDetail():
     def __init__(self, calories, id1, amount1, id2, amount2):
