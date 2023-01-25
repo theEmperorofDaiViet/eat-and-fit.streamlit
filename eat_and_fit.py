@@ -2,9 +2,11 @@ import streamlit as st
 from algorithm.fuzzy_logic import FuzzyLogic
 import sqlalchemy
 from models.eat import *
+from models.fit import *
 import base64
 import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
 
 st.set_page_config(page_title='Eat & Fit', page_icon='images\logo.png')
 
@@ -492,3 +494,107 @@ if not st.session_state.page1['is_first_load']:
                 )
 
         st.write('You may structure these days in any preferred manner. I suggest keeping the high carb day for special occasions. That way you can attend family functions, or eat out with friends, and indulge a little more than normal.')
+
+        # Workout plan
+        st.subheader("B. Workout")
+
+        # Cardio
+        with engine.connect() as conn:
+            cardio_result = conn.execute("SELECT * FROM Cardio WHERE Stage = :stage and Body = :body and Sex = :sex;",
+                                                                {'stage': st.session_state.page1['stage'], 'body': body, 'sex': st.session_state.page1['sex']},).fetchone()
+        cardio = Cardio(*cardio_result)
+
+        st.markdown(
+            f"""
+                <h3 style="padding-left: 27px">1. Cardio</h3>
+
+                <p style="padding-left: 55px">It doesn't matter which form of cardio you use. Pick something that gets your heart moving, be it treadmill, elliptical, or swimming.</p>
+            
+                <p style="padding-left: 55px">Based on your current state, you should do {cardio.sessions} sessions a week: {cardio.time[:-5]} minutes, respectively.</p>
+            """, unsafe_allow_html=True
+        )
+
+        # Gym
+        st.markdown(
+            f"""
+                <h3 style="padding-left: 27px">2. Gym</h3>
+
+                <p style="padding-left: 55px">You will be using an upper/lower workout every week. Rep schemes are merely guidelines.</p>
+            
+                <p style="padding-left: 55px">When a weight becomes manageable using the given set and rep schemes, add weight to the bar. For sake of convenience, use the same weight for each of the sets for a given exercise.</p>
+                <ul style="padding-left: 100px">
+                <li><b>Day 1</b> - Upper</li>
+                <li><b>Day 2</b> - Lower</li>
+                <li><b>Day 3</b> - <i>Off</i></li>
+                <li><b>Day 4</b> - Upper</li>
+                <li><b>Day 5</b> - Lower</li>
+                <li><b>Day 6</b> - <i>Off</i></li>
+                <li><b>Day 7</b> - <i>Off</i></li>                                                
+                </ul>            
+            """, unsafe_allow_html=True
+        )
+
+
+        col1, col2 = st.columns(2)
+
+        # Lower
+        with col1:
+            with engine.connect() as conn:
+                lower_gym_result = conn.execute("SELECT * FROM Gym WHERE Day = 'lower';").fetchall()
+
+            lower_gym = []
+            for lg_result in lower_gym_result:
+                lg = Gym(*lg_result)
+                with engine.connect() as conn:
+                    exercise_result = conn.execute("SELECT * FROM Exercise WHERE Id = :id;", {'id': lg.exercise},).fetchone()
+                    exercise = Exercise(*exercise_result)
+                lg.exercise = exercise.name
+                lower_gym.append(lg)
+
+            table_builder = '''<h3 style="text-align: center">Lower</h3>
+                                    <table style="width: 100%;">
+                                    <tr>
+                                        <th>Exercise</th>
+                                        <th>Sets</th>
+                                        <th>Reps</th>
+                                    </tr>'''
+
+            for lg in lower_gym:
+                table_builder += f"""<tr>
+                                        <td>{lg.exercise}</td>
+                                        <td>{lg.sets}</td>
+                                        <td>{lg.reps}</td>
+                                    </tr>"""
+            table_builder += "</table>"
+            st.markdown(table_builder, unsafe_allow_html=True)       
+
+        # Upper
+        with col2:
+            with engine.connect() as conn:
+                upper_gym_result = conn.execute("SELECT * FROM Gym WHERE Day = 'upper';").fetchall()
+
+            upper_gym = []
+            for ug_result in upper_gym_result:
+                ug = Gym(*ug_result)
+                with engine.connect() as conn:
+                    exercise_result = conn.execute("SELECT * FROM Exercise WHERE Id = :id;", {'id': ug.exercise},).fetchone()
+                    exercise = Exercise(*exercise_result)
+                ug.exercise = exercise.name
+                upper_gym.append(ug)
+
+            table_builder = '''<h3 style="text-align: center">Upper</h3>
+                                <table style="width: 100%;">
+                                    <tr>
+                                        <th>Exercise</th>
+                                        <th>Sets</th>
+                                        <th>Reps</th>
+                                    </tr>'''
+
+            for ug in upper_gym:
+                table_builder += f"""<tr>
+                                        <td>{ug.exercise}</td>
+                                        <td>{ug.sets}</td>
+                                        <td>{ug.reps}</td>
+                                    </tr>"""
+            table_builder += "</table>"
+            st.markdown(table_builder, unsafe_allow_html=True) 
