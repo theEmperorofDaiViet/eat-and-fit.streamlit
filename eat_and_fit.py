@@ -6,7 +6,6 @@ from models.fit import *
 import base64
 import matplotlib
 import matplotlib.pyplot as plt
-import numpy as np
 
 st.set_page_config(page_title='Eat & Fit', page_icon='images\logo.png')
 

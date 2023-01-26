@@ -95,7 +95,7 @@ class Dish():
         tmp = self.steps.split(';')
         steps = {}
         for i in range(0, len(tmp)):
-            key = 'Step' + str(i) + ' :'
+            key = 'Step ' + str(i+1) + ':'
             value = tmp[i]
             steps[key] = value
         return StepsDetail(steps)
