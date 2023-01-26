@@ -83,6 +83,33 @@ Fast enough, huh? Let's stop for a while and take a look at the project's struct
 
 ## Project Explorer
 
+<table>
+  <tr>
+    <td><img src="images\explorer.png" width="800px"></td>
+    <td></td>
+    <td>
+      <p>
+        The first subfolder, which named <b><i>algorithm</i></b>, is a package containing the algorithm used in the project. In this case, I used Fuzzy Logic, so there is a Python file named <code>fuzzy_logic.py</code> to implement it. I defined a rule table as a 2-dimensional numpy array and provided functions to perform each step of Fuzzy Logic: fuzzification, fuzzy inference and defuzzification. In each function, I put some <code>print()</code> functions to print the calculations. When running the app, you can see the results in the terminal.
+      </p>
+      <p>
+        The second subfolder is <b><i>database</i></b>. The <code>eatandfit.db</code> file is the SQLite database of this application. You just need only it to use database in this app. But I still provided <code>.sql</code> files in the <b><i>scripts</i></b> subfolder to show the structure of each table in the database. You could modify these scripts and execute them to create another database that you want.
+      </p>
+      <p>
+        The third subfolder, <b><i>images</i></b>, contains the images used in this application. I stored all images of dishes as <code>blob</code> type in the database and used <code>base64</code> to decode them back to <code>.jpeg</code> images for  displaying. But I still provided them in the <b><i>dishes</i></b> subfolder for you to check.
+      </p>
+      <p>
+        The fourth subfolder, which named <b><i>models</i></b>, is a package containing all the model class of this application. They are seperated into two <code>.py</code> files named <code>eat.py</code> and <code>fit.py</code>, respectively. The former  consists of all the classes needed to make a diet plan, and the latter consists of all the classes needed to make a workout plan.
+      </p>
+      <p>
+        The final subfolder, which named <b><i>pages</i></b>, contains all <code>.py</code> files which will be loaded as pages by streamlit. Their names will be transformed to page names in the sidebar of the app.
+      </p>
+      <p>
+        And the last thing to focus on is the <code>eat_and_fit.py</code> file. It is the "main" file of this application and will be loaded as the home page. That's why we type it's name in the command to run the app.
+      </p>
+    </td>
+  </tr>
+</table>
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Key Features
