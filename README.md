@@ -14,6 +14,7 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#project-explorer">Project Explorer</a></li>
       </ul>
     </li>
     <li><a href="#key-features">Key Features</li>
@@ -49,8 +50,38 @@ A Python version using Streamlit framework of the original <a href="https://gith
 # Getting Started
 
 ## Prerequisites
+Before cloning and using this application, you'll need to install these things on your computer:
+* [Python 3.10.2](https://www.python.org/downloads/release/python-3102/): Streamlit is a app framework in Python language, so you need to have Python installed to run this application. I used Python 3.10.2, but I think it works fine with some other releases as well.
+* [Visual Studio Code](https://code.visualstudio.com/download): You can choose any IDE or Text Editor that you want. To build a simple application like this, I recommend <b>Visual Studio Code</b>.
+* [Streamlit](https://streamlit.io/): a free and open-source framework to rapidly build and share beautiful machine learning and data science web apps. Open the terminal and type this command to install Streamlit:
+  ```sh
+  pip install streamlit
+  ```
+* [NumPy](https://numpy.org/): a library for the Python programming language, adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays. Open the terminal and type this command to install Numpy:
+  ```sh
+  pip install numpy
+  ```
+* [Matplotlib](https://matplotlib.org/): a comprehensive library for creating static, animated, and interactive visualizations in Python. Open the terminal and type this command to install Matplotlib:
+  ```sh
+  pip install matplotlib
+  ```
+* [SQLite](https://sqlite.org/): a C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine. SQLite is the most used database engine in the world. SQLite is built into all mobile phones and most computers and comes bundled inside countless other applications that people use every day.
+* [SQLiteStudio](https://sqlitestudio.pl/): a desktop application for browsing and editing SQLite database files. It is aimed for people, who know what SQLite is, or what relational databases are in general.
 
 ## Installation
+You can install this application by cloning this repository into your current working directory:
+```sh
+git clone https://github.com/theEmperorofDaiViet/eat-and-fit.streamlit.git
+```
+After cloning the repository, you can open the project by Visual Studio Code. To run the application, open a terminal and type:
+```sh
+streamlit run eat_and_fit.py
+```
+As usual, the app should automatically open in a new tab in your browser. It runs on port 8501 by default.
+
+Fast enough, huh? Let's stop for a while and take a look at the project's structure:
+
+## Project Explorer
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
