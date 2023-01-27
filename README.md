@@ -123,6 +123,27 @@ Fast enough, huh? Let's stop for a while and take a look at the project's struct
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 # Usage
+<i>This is a short video, which converted to gif, to illustrate the features of the application in a nutshell:</i>
+
+<p align="center">
+    <img src="/images/usage.gif">
+</p>
+
+- The home page includes a sidebar to navigate through other pages and enter input. The default input is male, 175 cm in height, 80 kg in weight and beginner.
+- I change the weight to 50 kg and click the "<b><i>Submit</i></b>" button. My Fuzzy Logic considers a man with that height and weight to be "<i>underweight</i>". The application display a message to advise me to gain weight, not to lose weight.
+- Then, I change the weight to 65 kg and click "<b><i>Submit</i></b>". My Fuzzy Logic considers a man with that height and weight to be "<i>normal</i>". The application display a message to advise me to maintain that healthy weight.
+- This time I change the weight to 80 kg and click "<b><i>Submit</i></b>" again. My Fuzzy Logic considers a man with that height and weight to be "<i>overweight</i>". A message is displayed to inform my current state, and followed by the weight-loss plan provided for me.
+- The plan consists of:
+  - A diet plan with three menus for low, moderate, and high carb eating days. Each menu consists of nutrition info; a pie chart represent the percentage of calories from carbs, fat and protein; and dish for each meal.
+  - A workout plan of cardio and gym.
+- Then, I change the stage to "<i>intermediate</i>". You can see the plan is changed! Once the first plan is generated, you don't need to click the submit button, just change the input and the plan will be automatically changed according to the input you entered.
+- After that, I navigate to the 🍱 <b><i>eat</i></b> page and search for a salmon recipe. There are several matched results, I choose <i>Roasted Salmon</i>. The page displays all about that recipe:
+  - Dish's image
+  - Nutrition info
+  - Ingredients
+  - Steps to cook
+- Then, I navigate to the 🏋️‍♂️ <b><i>fit</i></b> page and search for an exercise for leg. There are several matched results, I choose <i>Leg Extension</i>. The page displays a video guide, overview and specific instructions to do the exercise.
+- Finally, I go back to the home page. The input and the plan are still here! I used some workaround with <code>st.session_state</code> and callback to keep input value during navigating through other pages.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
